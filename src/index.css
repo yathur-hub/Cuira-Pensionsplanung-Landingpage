@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --color-white: #FFFFFF;
+  --color-bg-alt: #EBEDF4;
+  --color-navy: #131424;
+  --color-accent: #6C79F0;
+  --color-accent-light: #CACFF6;
+  --color-accent-dark: #6D7AF0;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-navy font-sans antialiased m-0 overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight transition-all duration-300;
+  }
+}
+
+.blueprint-card {
+  @apply bg-white border border-slate-200 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md hover:border-accent/30;
+}
+
+.priority-badge {
+  @apply text-[10px] font-bold px-2 py-1 rounded;
+}
+
+.metadata-label {
+  @apply text-[10px] text-slate-500 font-bold uppercase tracking-widest block mb-1;
+}
+
+.metadata-value {
+  @apply text-sm font-medium leading-relaxed;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300;
+}
+
+.markdown-body {
+  @apply text-navy/80;
+}
+
+.markdown-body h1 {
+  @apply text-3xl mb-12 border-b border-navy/10 pb-6;
+}
+
+.markdown-body h2 {
+  @apply text-xl mt-12 mb-6 text-navy;
+}
+
+.markdown-body h3 {
+  @apply text-lg mt-8 mb-4 text-navy/80;
+}
+
+.markdown-body p {
+  @apply text-base leading-relaxed mb-6 font-light;
+}
+
+.markdown-body ul {
+  @apply list-disc pl-6 mb-8 space-y-3 font-light text-navy/70;
+}
+
+.markdown-body strong {
+  @apply font-bold text-navy;
+}
+
+.markdown-body a {
+  @apply text-accent font-medium hover:underline;
+}
+
+.markdown-body hr {
+  @apply my-16 border-navy/5;
+}

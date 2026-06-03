@@ -1,0 +1,6 @@
+{
+  "name": "Cuira Partners Strategy Builder",
+  "description": "Strategic landing page architecture for independent pension planning in Switzerland.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

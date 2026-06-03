@@ -30,7 +30,7 @@ export const heroVariants: Record<string, HeroCopy> = {
       "Persönliche Begleitung durch eidg. dipl. Finanzplaner",
       "Klarheit über Rentenhöhe und Kapitalfluss"
     ],
-    primaryCTA: "Kostenloses Erstgespräch vereinbaren",
+    primaryCTA: "Erstgespräch vereinbaren",
     secondaryCTA: "Pensionsrechner",
     trustLabel: "Bewährt bei über 250 Familien | Diskret & Persönlich",
     microCopy: "Ein Gespräch von Mensch zu Mensch. Ohne Verkaufsdruck.",

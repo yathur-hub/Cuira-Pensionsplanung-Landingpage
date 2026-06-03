@@ -86,21 +86,7 @@ export default function HeroSection({ copy }: { copy: HeroCopy }) {
                 </a>
               </div>
 
-              {/* Trust Context */}
-              <div className="mt-12 md:mt-16 flex flex-col sm:flex-row justify-center lg:justify-start gap-8 md:gap-12 items-center border-t border-white/5 pt-8 md:pt-10 pb-4 md:pb-0">
-                <div className="flex flex-col items-center lg:items-start w-full sm:w-auto">
-                  <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] mb-2 font-bold select-none text-center lg:text-left">Sicherheits-Status</span>
-                  <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[10px] sm:text-xs font-bold text-white/80">{copy.trustLabel}</span>
-                  </div>
-                </div>
-                
-                <div className="flex flex-col items-center lg:items-start w-full sm:w-auto">
-                  <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] mb-2 font-bold select-none text-center lg:text-left">Honorar-Basis</span>
-                  <span className="text-[10px] sm:text-xs font-bold text-accent-light uppercase tracking-widest text-center lg:text-left">100% Unabhängig</span>
-                </div>
-              </div>
+
             </motion.div>
           </div>
 

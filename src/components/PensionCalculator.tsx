@@ -155,32 +155,76 @@ export default function PensionCalculator() {
   };
 
   return (
-    <section id="pension-calculator" className="py-24 bg-bg-alt/30 select-none">
+    <section id="pension-calculator" className="py-24 bg-bg-alt/30 select-none overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+              }
+            }
+          }}
+          className="text-center mb-16"
+        >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full text-accent text-[10px] font-bold uppercase tracking-[0.3em] mb-6"
           >
             <Calculator className="w-3 h-3" />
             Vorsorge-Check
           </motion.div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-navy mb-6 max-w-4xl mx-auto">
+          <motion.h2 
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            className="text-4xl md:text-5xl lg:text-6xl text-navy mb-6 max-w-4xl mx-auto"
+          >
             Wie gut sind Sie für die <span className="text-accent italic font-normal">Pension vorbereitet?</span>
-          </h2>
-          <p className="text-lg md:text-xl text-navy/60 max-w-2xl mx-auto font-light leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            className="text-lg md:text-xl text-navy/60 max-w-2xl mx-auto font-light leading-relaxed"
+          >
             Berechnen Sie in weniger als 60 Sekunden Ihre voraussichtliche finanzielle Situation im Ruhestand.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.4
+              }
+            }
+          }}
+          className="grid lg:grid-cols-12 gap-12 items-start"
+        >
           {/* Input Form */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, x: -30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            }}
             className="lg:col-span-7 bg-white rounded-3xl p-8 md:p-12 shadow-2xl shadow-navy/5 border border-white"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -324,7 +368,13 @@ export default function PensionCalculator() {
           </motion.div>
 
           {/* Side Context / Illustrations */}
-          <div className="lg:col-span-5 space-y-8">
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            className="lg:col-span-5 space-y-8"
+          >
             <div className="bg-navy rounded-3xl p-8 md:p-10 text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-[60px] rounded-full -translate-y-1/2 translate-x-1/2" />
               <ShieldCheck className="w-10 h-10 text-accent mb-6" />
@@ -360,8 +410,8 @@ export default function PensionCalculator() {
                 Unsere Berechnung basiert auf konservativen Standardannahmen der Schweizer Vorsorgeeinrichtungen, um Ihnen eine realistische Grundlage für Ihre Planung zu bieten.
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Results Section */}
         <AnimatePresence>

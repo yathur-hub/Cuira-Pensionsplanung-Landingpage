@@ -5,6 +5,7 @@
 
 import React, { useState } from "react";
 import { fullVariants } from "./data/copyVariants";
+import { MapPin, ShieldCheck } from "lucide-react";
 import HeroSection from "./components/HeroSection";
 import TrustSection from "./components/TrustSection";
 import PensionCalculator from "./components/PensionCalculator";
@@ -111,23 +112,39 @@ export default function App() {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
-              <div>
-                <h4 className="text-accent font-bold uppercase tracking-widest text-[10px] mb-3">Zürich Office</h4>
-                <p className="text-white/50 text-xs leading-relaxed uppercase font-mono tracking-tighter">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+              <div className="group">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-6 h-6 rounded-lg bg-accent/10 flex items-center justify-center">
+                    <MapPin className="w-3 h-3 text-accent" />
+                  </div>
+                  <h4 className="text-white font-bold uppercase tracking-widest text-[10px]">Zürich Office</h4>
+                </div>
+                <p className="text-white/40 text-xs leading-relaxed uppercase font-mono tracking-tighter pl-8 border-l border-white/5 group-hover:border-accent transition-colors">
                   Cuira Partners GmbH<br />
                   Splügenstrasse 11<br />
                   8002 Zürich
                 </p>
               </div>
-              <div>
-                <h4 className="text-accent font-bold uppercase tracking-widest text-[10px] mb-3">Rechtliches</h4>
-                <button 
-                  onClick={() => setIsLegalOpen(true)}
-                  className="text-white/50 text-xs hover:text-accent transition-colors"
-                >
-                  Impressum & Datenschutz
-                </button>
+
+              <div className="group">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-6 h-6 rounded-lg bg-accent/10 flex items-center justify-center">
+                    <ShieldCheck className="w-3 h-3 text-accent" />
+                  </div>
+                  <h4 className="text-white font-bold uppercase tracking-widest text-[10px]">Rechtliches</h4>
+                </div>
+                <div className="pl-8 border-l border-white/5 group-hover:border-accent transition-colors">
+                  <button 
+                    onClick={() => setIsLegalOpen(true)}
+                    className="text-white/40 text-xs hover:text-accent transition-all uppercase font-mono tracking-tighter text-left"
+                  >
+                    Impressum & Datenschutz
+                  </button>
+                  <p className="mt-1 text-[9px] text-white/20 uppercase tracking-widest font-bold">
+                    Reguliert & Zertifiziert
+                  </p>
+                </div>
               </div>
             </div>
           </div>

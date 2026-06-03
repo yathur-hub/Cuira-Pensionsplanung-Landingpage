@@ -109,7 +109,7 @@ export const fullVariants: Record<string, FullCopy> = {
         { label: "Individuelle Planung", cuira: true, banks: "Produktfokus", insurance: "Produktfokus", wealth: "Anlagefokus" }
       ],
       closing: "Wahrer Seelenfrieden entsteht erst, wenn Interessenkonflikte vollständig eliminiert sind.",
-      ctaText: "Beratungsphilosophie kennenlernen"
+      ctaText: "Termin vereinbaren"
     }
   },
   executive: {

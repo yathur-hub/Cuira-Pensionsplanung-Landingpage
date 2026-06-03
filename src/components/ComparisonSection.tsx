@@ -7,6 +7,20 @@ import { motion } from "motion/react";
 import { Check, X, Shield, Info } from "lucide-react";
 import { ComparisonCopy } from "../types";
 
+const renderValue = (val: string | boolean, isCuira = false, isMobile = false) => {
+  if (typeof val === 'boolean') {
+    if (val) {
+      return <Check className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${isCuira ? 'text-accent' : 'opacity-30'}`} />;
+    }
+    return <X className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${isCuira ? 'text-slate-200' : 'opacity-20'}`} />;
+  }
+  return (
+    <span className={`${isCuira ? 'text-accent bg-accent/5' : 'text-slate-400'} font-bold text-[10px] md:text-sm px-2 md:px-3 py-1 rounded-full whitespace-nowrap`}>
+      {val}
+    </span>
+  );
+};
+
 export default function ComparisonSection({ copy }: { copy: ComparisonCopy }) {
   return (
     <section id="comparison" className="py-32 bg-white relative overflow-hidden">
@@ -57,7 +71,8 @@ export default function ComparisonSection({ copy }: { copy: ComparisonCopy }) {
         </div>
 
         <div className="mb-24">
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-navy/5 overflow-hidden">
+          {/* Desktop Table - Hidden on Mobile */}
+          <div className="hidden lg:block bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-navy/5 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[800px]">
                 <thead>
@@ -75,29 +90,17 @@ export default function ComparisonSection({ copy }: { copy: ComparisonCopy }) {
                       <td className="py-5 px-8 font-semibold text-navy/80 text-sm">{row.label}</td>
                       <td className="py-5 px-8">
                         <div className="flex items-center gap-2">
-                          {typeof row.cuira === 'boolean' ? (
-                            row.cuira ? 
-                              <Check className="w-5 h-5 text-accent" /> : 
-                              <X className="w-5 h-5 text-slate-200" />
-                          ) : (
-                            <span className="text-accent font-bold text-sm bg-accent/5 px-3 py-1 rounded-full">{row.cuira}</span>
-                          )}
+                          {renderValue(row.cuira, true)}
                         </div>
                       </td>
                       <td className="py-5 px-8 text-slate-400 text-sm">
-                        {typeof row.banks === 'boolean' ? (
-                          row.banks ? <Check className="w-4 h-4 opacity-30" /> : <X className="w-4 h-4 opacity-20" />
-                        ) : row.banks}
+                        {renderValue(row.banks)}
                       </td>
                       <td className="py-5 px-8 text-slate-400 text-sm">
-                        {typeof row.insurance === 'boolean' ? (
-                          row.insurance ? <Check className="w-4 h-4 opacity-30" /> : <X className="w-4 h-4 opacity-20" />
-                        ) : row.insurance}
+                        {renderValue(row.insurance)}
                       </td>
                       <td className="py-5 px-8 text-slate-400 text-sm">
-                        {typeof row.wealth === 'boolean' ? (
-                          row.wealth ? <Check className="w-4 h-4 opacity-30" /> : <X className="w-4 h-4 opacity-20" />
-                        ) : row.wealth}
+                        {renderValue(row.wealth)}
                       </td>
                     </tr>
                   ))}
@@ -105,13 +108,55 @@ export default function ComparisonSection({ copy }: { copy: ComparisonCopy }) {
               </table>
             </div>
           </div>
+
+          {/* Mobile Cards - Shown only on Mobile */}
+          <div className="lg:hidden space-y-4">
+            {copy.table.map((row, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5"
+              >
+                <h4 className="text-navy font-bold text-base mb-4 pb-3 border-b border-slate-50">{row.label}</h4>
+                
+                <div className="space-y-4">
+                  {/* Cuira partners row */}
+                  <div className="flex items-center justify-between bg-accent/5 p-3 rounded-xl border border-accent/10">
+                    <span className="text-xs font-bold text-navy">Cuira Partners</span>
+                    <div className="flex items-center gap-2">
+                       {renderValue(row.cuira, true)}
+                    </div>
+                  </div>
+
+                  {/* Others row */}
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Banken</span>
+                      <div className="text-xs text-slate-600 font-medium">{renderValue(row.banks, false, true)}</div>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Versich.</span>
+                      <div className="text-xs text-slate-600 font-medium">{renderValue(row.insurance, false, true)}</div>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Vermögen</span>
+                      <div className="text-xs text-slate-600 font-medium">{renderValue(row.wealth, false, true)}</div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 bg-navy rounded-[2.5rem] text-white">
           <div className="max-w-xl text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
               <Info className="w-5 h-5 text-accent" />
-              <span className="text-[10px] uppercase font-bold tracking-widest text-accent-light">Kernargumentation</span>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-accent-light">Warum Cuira</span>
             </div>
             <h4 className="text-xl md:text-2xl font-bold mb-3">{copy.argument}</h4>
             <p className="text-white/50 text-sm">{copy.closing}</p>
